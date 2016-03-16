@@ -69,6 +69,7 @@
     <Folder Include="Security\" />
     <Folder Include="HumanResources" />
     <Folder Include="HumanResources\setup" />
+    <Folder Include="Assemblies\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="tSQLt\Tables\Private_NullCellTable.sql" />
@@ -193,17 +194,6 @@
     <Build Include="HumanResources\setup\HumanResources_Schema.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="tSQLtCLR">
-      <HintPath>Assemblies\tSQLtCLR.dll</HintPath>
-      <SqlAssemblyName>tSQLtCLR</SqlAssemblyName>
-      <IsModelAware>True</IsModelAware>
-      <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
-      <SqlOwnerName>dbo</SqlOwnerName>
-      <SqlPermissionSet>EXTERNAL_ACCESS</SqlPermissionSet>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assemblies\tSQLtCLR.dll" />
     <None Include="DeployProfile.publish.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +201,10 @@
       <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\120\SqlSchemas\master.dacpac</HintPath>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
       <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+    <ArtifactReference Include="..\..\tSQLt\tsqlt.dacpac">
+      <HintPath>..\..\tSQLt\tsqlt.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
