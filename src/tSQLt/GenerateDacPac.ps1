@@ -53,3 +53,11 @@ Invoke-Sqlcmd -InputFile (Join-Path $PSScriptRoot "tSQLt.class.sql") -ServerInst
 write-host "Creating dacpac"
 $targetDacPacFile = (Join-Path $PSScriptRoot ("tSQLt{0}.dacpac" -f $Suffix))
 &$sqlpackage_file_name /action:Extract /OverwriteFiles:True /tf:$targetDacPacFile /SourceServerName:$DatabaseServer /SourceDatabaseName:$DatabaseName /p:ExtractReferencedServerScopedElements=False
+
+# Delete the database
+$dbValue = dir SQLSERVER:\SQL\$DatabaseServer\$DatabaseInstance\Databases | where {$_.Name -eq $DatabaseName}
+if($dbValue -ne $null) {
+    write-host "Deleting old database"
+    $server.KillAllProcesses($DatabaseName)
+    $dbValue.Drop()
+}
