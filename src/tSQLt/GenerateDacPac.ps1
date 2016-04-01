@@ -3,6 +3,7 @@ Param(
      [string]$DatabaseServer = 'ddsql3'
     ,[string]$DatabaseInstance = 'DEFAULT'
     ,[string]$DatabaseName = 'tSQLt'
+    ,[string]$Suffix = ''
 )
 
 # Find the latest sqlpackage.exe
@@ -50,5 +51,5 @@ Invoke-Sqlcmd -InputFile (Join-Path $PSScriptRoot "tSQLt.class.sql") -ServerInst
 
 #create dacpac
 write-host "Creating dacpac"
-$targetDacPacFile = (Join-Path $PSScriptRoot "tSQLt.dacpac")
+$targetDacPacFile = (Join-Path $PSScriptRoot ("tSQLt{0}.dacpac" -f $Suffix))
 &$sqlpackage_file_name /action:Extract /OverwriteFiles:True /tf:$targetDacPacFile /SourceServerName:$DatabaseServer /SourceDatabaseName:$DatabaseName /p:ExtractReferencedServerScopedElements=False
