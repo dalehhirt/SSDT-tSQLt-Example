@@ -9,16 +9,15 @@ AS
     declare @PayFrequency [tinyint] = 7
     declare @CurrentFlag [tinyint] = 1
 	 
-	exec tSQLt.FakeTable 'Employee', 'HumanResources'
-	insert into [$(AdventureWorksExample)].[HumanResources].[Employee]([BusinessEntityID], [CurrentFlag])
+	exec tSQLt.FakeTable 'HumanResources.Employee'
+
+	insert into [HumanResources].[Employee]([BusinessEntityID], [CurrentFlag])
 	select @BusinessEntityID, 0
 
-
-
-	exec [$(AdventureWorksExample)].[HumanResources].[uspUpdateEmployeeHireInfo] @BusinessEntityID, @JobTitle, @HireDate, @RateChangeDate, @Rate, @PayFrequency, @CurrentFlag
+	exec [HumanResources].[uspUpdateEmployeeHireInfo] @BusinessEntityID, @JobTitle, @HireDate, @RateChangeDate, @Rate, @PayFrequency, @CurrentFlag
 
 	declare @actual_CurrentFlag tinyint
-	select @actual_CurrentFlag = CurrentFlag from [$(AdventureWorksExample)].HumanResources.Employee
+	select @actual_CurrentFlag = CurrentFlag from HumanResources.Employee
 
 	if @actual_CurrentFlag <> @CurrentFlag
 	begin

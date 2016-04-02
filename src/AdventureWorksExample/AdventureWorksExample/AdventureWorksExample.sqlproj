@@ -23,6 +23,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <EnableFullTextSearch>False</EnableFullTextSearch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -178,8 +179,8 @@
     <Build Include="HumanResources\Views\vEmployeeDepartmentHistory.sql" />
     <Build Include="HumanResources\Views\vEmployeeDepartment.sql" />
     <Build Include="HumanResources\Views\vEmployee.sql" />
-    <Build Include="Storage\AW2008FullTextCatalog.sql" />
-    <Build Include="FullTextIndexes.sql" />
+    <None Include="Storage\AW2008FullTextCatalog.sql" />
+    <None Include="FullTextIndexes.sql" />
     <Build Include="dbo\Functions\ufnLeadingZeros.sql" />
     <Build Include="dbo\Functions\ufnGetStock.sql" />
     <Build Include="dbo\Functions\ufnGetSalesOrderStatusText.sql" />
@@ -191,7 +192,7 @@
     <Build Include="dbo\Functions\ufnGetAccountingStartDate.sql" />
     <Build Include="dbo\Functions\ufnGetAccountingEndDate.sql" />
     <Build Include="dbo\Functions\ufnGetContactInformation.sql" />
-    <Build Include="dbo\Stored Procedures\uspSearchCandidateResumes.sql" />
+    <None Include="dbo\Stored Procedures\uspSearchCandidateResumes.sql" />
     <Build Include="dbo\Stored Procedures\uspPrintError.sql" />
     <Build Include="dbo\Stored Procedures\uspLogError.sql" />
     <Build Include="dbo\Stored Procedures\uspGetWhereUsedProductID.sql" />
