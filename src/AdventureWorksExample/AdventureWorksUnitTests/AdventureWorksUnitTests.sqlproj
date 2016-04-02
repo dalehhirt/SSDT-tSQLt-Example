@@ -12,8 +12,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>AdventureWorksUnitTests</RootNamespace>
-    <AssemblyName>AdventureWorksUnitTests</AssemblyName>
+    <RootNamespace>AdventureWorksExample</RootNamespace>
+    <AssemblyName>AdventureWorksExample</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -65,11 +65,12 @@
     <Folder Include="Properties" />
     <Folder Include="HumanResources" />
     <Folder Include="HumanResources\setup" />
-    <Folder Include="Setup" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="HumanResources\test uspUpdateEmployeeHireInfo_currentflag_is_set_to_true_when_hired.sql" />
     <Build Include="HumanResources\setup\HumanResources_Schema.sql" />
+    <Build Include="HumanResources\test uspUpdateEmployeeHireInfo_currentflag_is_set_to_true_when_hired.sql" />
+    <Build Include="HumanResources\test current flag is valid upon insert.sql" />
+    <Build Include="HumanResources\test unique Department Identity.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DeployProfile.publish.xml" />
@@ -92,11 +93,5 @@
       <Private>True</Private>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PreDeploy Include="Setup\Script.PreDeployment1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="Setup\Script.PostDeployment1.sql" />
   </ItemGroup>
 </Project>
