@@ -15,9 +15,7 @@ AS
     declare @PayFrequency [tinyint] = 7
     declare @CurrentFlag [tinyint] = 0
 	declare @InsertedCurrentFlag [tinyint] = 1
-	 
-	exec tSQLt.FakeTable 'HumanResources.Employee'
-
+	
 	insert into [HumanResources].[Employee]([BusinessEntityID], [CurrentFlag])
 	select @BusinessEntityID, 0
 

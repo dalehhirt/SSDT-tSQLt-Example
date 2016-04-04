@@ -14,9 +14,7 @@ AS
     declare @Rate [money] = 24.87
     declare @PayFrequency [tinyint] = 7
     declare @CurrentFlag [tinyint] = 1
-	 
-	exec tSQLt.FakeTable 'HumanResources.Employee' --, @Defaults=1
-
+	
 	--Act
 	--  Execute the code under test like a stored procedure, function or view
 	--  and capture the results in variables or tables.

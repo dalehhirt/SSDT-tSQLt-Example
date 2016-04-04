@@ -65,12 +65,16 @@
     <Folder Include="Properties" />
     <Folder Include="HumanResources" />
     <Folder Include="HumanResources\setup" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="HumanResources\setup\HumanResources_Schema.sql" />
-    <Build Include="HumanResources\test uspUpdateEmployeeHireInfo_currentflag_is_set_to_true_when_hired.sql" />
+    <Build Include="HumanResources\Setup.sql" />
     <Build Include="HumanResources\test current flag is valid upon insert.sql" />
+    <Build Include="HumanResources\test foreign key relationship.sql" />
+    <Build Include="HumanResources\test gender check constraint.sql" />
     <Build Include="HumanResources\test unique Department Identity.sql" />
+    <Build Include="HumanResources\test uspUpdateEmployeeHireInfo_currentflag_is_set_to_true_when_hired.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DeployProfile.publish.xml" />
@@ -85,6 +89,12 @@
       <HintPath>..\..\tSQLt\tSQLt2014.dacpac</HintPath>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
     </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Scripts\Script.PreDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdventureWorksExample\AdventureWorksExample.sqlproj">
