@@ -3,6 +3,10 @@ Param(
      [string]$DatabaseServer = 'ddsql3'
     ,[string]$DatabaseInstance = 'DEFAULT'
     ,[string]$DatabaseName = 'tSQLt'
+<<<<<<< HEAD
+=======
+    ,[string]$Suffix = ''
+>>>>>>> origin/master
 )
 
 # Find the latest sqlpackage.exe
@@ -15,6 +19,7 @@ for($i = 100; $i -le 190; $i += 10)
   }
 }
 
+<<<<<<< HEAD
 # Error out if we can't find sqlpackage
 If ($last_version -eq 0) {
     Write-Error "SQLPackage.exe was not found on this machine."
@@ -26,6 +31,8 @@ if((Get-Module -ListAvailable | where {$_.Name -eq "sqlps"}) -eq $null) {
     return
 }
 
+=======
+>>>>>>> origin/master
 # Run sqlpackage to extract DACPAC
 If ($last_version -gt 0) {
   $msg = "SqlPackage version: " + $last_version;
@@ -61,5 +68,18 @@ Invoke-Sqlcmd -InputFile (Join-Path $PSScriptRoot "tSQLt.class.sql") -ServerInst
 
 #create dacpac
 write-host "Creating dacpac"
+<<<<<<< HEAD
 $targetDacPacFile = (Join-Path $PSScriptRoot "tSQLt.dacpac")
 &$sqlpackage_file_name /action:Extract /OverwriteFiles:True /tf:$targetDacPacFile /SourceServerName:$DatabaseServer /SourceDatabaseName:$DatabaseName /p:ExtractReferencedServerScopedElements=False
+=======
+$targetDacPacFile = (Join-Path $PSScriptRoot ("tSQLt{0}.dacpac" -f $Suffix))
+&$sqlpackage_file_name /action:Extract /OverwriteFiles:True /tf:$targetDacPacFile /SourceServerName:$DatabaseServer /SourceDatabaseName:$DatabaseName /p:ExtractReferencedServerScopedElements=False
+
+# Delete the database
+$dbValue = dir SQLSERVER:\SQL\$DatabaseServer\$DatabaseInstance\Databases | where {$_.Name -eq $DatabaseName}
+if($dbValue -ne $null) {
+    write-host "Deleting old database"
+    $server.KillAllProcesses($DatabaseName)
+    $dbValue.Drop()
+}
+>>>>>>> origin/master
